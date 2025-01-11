@@ -38,7 +38,7 @@ class TodoApp(QMainWindow):
         buttonLayout.addWidget(self.addButton)
 
         self.removeButton = QPushButton('Remove Selected')
-        #self.removeButton.clicked.connect(self.removeSelectedTask)
+        self.removeButton.clicked.connect(self.removeSelectedTask)
         buttonLayout.addWidget(self.removeButton)
 
         self.layout.addLayout(buttonLayout)
@@ -54,6 +54,13 @@ class TodoApp(QMainWindow):
             self.todoList.addItem(item)
             self.inputField.clear()
             #self.saveTasks()
+
+    def removeSelectedTask(self):
+        for item in self.todoList.selectedItems():
+            task_text = item.text()
+            self.todoList.takeItem(self.todoList.row(item))
+            #self.tasks = [task for task in self.tasks if task['text'] != task_text]
+        #self.saveTasks()
 
 def main():
     app = QApplication(sys.argv)
