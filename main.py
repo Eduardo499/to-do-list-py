@@ -19,7 +19,7 @@ class TodoApp(QMainWindow):
         self.centralWidget.setLayout(self.layout)
         self._createInputField()
         self._createTodoList()
-        #self._createButtons()
+        self._createButtons()
 
     def _createInputField(self):
         self.inputField = QLineEdit()
@@ -30,6 +30,18 @@ class TodoApp(QMainWindow):
     def _createTodoList(self):
         self.todoList = QListWidget()
         self.layout.addWidget(self.todoList)
+
+    def _createButtons(self):
+        buttonLayout = QHBoxLayout()
+        self.addButton = QPushButton('Add')
+        #self.addButton.clicked.connect(self.addTask)
+        buttonLayout.addWidget(self.addButton)
+
+        self.removeButton = QPushButton('Remove Selected')
+        #self.removeButton.clicked.connect(self.removeSelectedTask)
+        buttonLayout.addWidget(self.removeButton)
+
+        self.layout.addLayout(buttonLayout)
 
 def main():
     app = QApplication(sys.argv)
