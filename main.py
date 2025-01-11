@@ -24,7 +24,7 @@ class TodoApp(QMainWindow):
     def _createInputField(self):
         self.inputField = QLineEdit()
         self.inputField.setPlaceholderText("Enter a new task...")
-        #self.inputField.returnPressed.connect(self.addTask)
+        self.inputField.returnPressed.connect(self.addTask)
         self.layout.addWidget(self.inputField)
 
     def _createTodoList(self):
@@ -34,7 +34,7 @@ class TodoApp(QMainWindow):
     def _createButtons(self):
         buttonLayout = QHBoxLayout()
         self.addButton = QPushButton('Add')
-        #self.addButton.clicked.connect(self.addTask)
+        self.addButton.clicked.connect(self.addTask)
         buttonLayout.addWidget(self.addButton)
 
         self.removeButton = QPushButton('Remove Selected')
@@ -42,6 +42,18 @@ class TodoApp(QMainWindow):
         buttonLayout.addWidget(self.removeButton)
 
         self.layout.addLayout(buttonLayout)
+    
+    def addTask(self):
+        task = self.inputField.text().strip()
+        if task:
+            task_data = {'text': task, 'completed': False}
+            #self.tasks.append(task_data)
+            item = QListWidgetItem(task)
+            item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+            item.setCheckState(Qt.CheckState.Unchecked)
+            self.todoList.addItem(item)
+            self.inputField.clear()
+            #self.saveTasks()
 
 def main():
     app = QApplication(sys.argv)
