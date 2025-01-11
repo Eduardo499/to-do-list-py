@@ -11,6 +11,16 @@ class TodoApp(QMainWindow):
         super().__init__()
         self.setWindowTitle('To do list')
         self.setFixedSize(400, 500)
+        self.file_path = 'tasks.json'
+        #self.tasks = self.loadTasks()
+        self.centralWidget = QWidget()
+        self.setCentralWidget(self.centralWidget)
+        self.layout = QVBoxLayout()
+        self.centralWidget.setLayout(self.layout)
+        #self._createInputField()
+        #self._createTodoList()
+        #self._createButtons()
+
 
 def main():
     app = QApplication(sys.argv)
