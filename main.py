@@ -18,7 +18,7 @@ class TodoApp(QMainWindow):
         self.layout = QVBoxLayout()
         self.centralWidget.setLayout(self.layout)
         self._createInputField()
-        #self._createTodoList()
+        self._createTodoList()
         #self._createButtons()
 
     def _createInputField(self):
@@ -26,6 +26,10 @@ class TodoApp(QMainWindow):
         self.inputField.setPlaceholderText("Enter a new task...")
         #self.inputField.returnPressed.connect(self.addTask)
         self.layout.addWidget(self.inputField)
+
+    def _createTodoList(self):
+        self.todoList = QListWidget()
+        self.layout.addWidget(self.todoList)
 
 def main():
     app = QApplication(sys.argv)
